@@ -1,6 +1,5 @@
-
-from datetime import date
 import requests
+from datetime import date
 from colors import wind_color, stronger_color
 
 # -------------------------
@@ -10,6 +9,7 @@ def get_station_data(code):
 
     today = date.today()
 
+    
     url = (
         f"https://www.euskalmet.euskadi.eus/vamet/stations/readings/"
         f"{code}/"
@@ -18,12 +18,26 @@ def get_station_data(code):
         f"{today.day:02d}/"
         f"webmet00-readingsData.json"
     )
-    print(url)
-    
-    r = requests.get(url)
-    r.raise_for_status()
 
-    return r.json()
+    print(url)
+
+    headers = {
+        "User-Agent": "Mozilla/5.0"
+    }
+
+    try:
+        r = requests.get(url, headers=headers, timeout=30)
+        r.raise_for_status()
+        return r.json()
+    except Exception as e:
+        print(f"Error descargando {url}")
+        print(repr(e))
+        return None
+
+
+
+
+  
 
 
 # -------------------------
