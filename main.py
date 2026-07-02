@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
 
-    data = get_wind_table("C042", n=20)
+    data = get_wind_table("C019", n=20)
 
     return render_template("index.html", data=data)
 

@@ -2,7 +2,7 @@
 from jinja2 import Environment, FileSystemLoader
 from euskalmet import get_wind_table
 
-data = get_wind_table("C042", n=20)
+data = get_wind_table("C019", n=20)
 
 env = Environment(loader=FileSystemLoader("templates"))
 template = env.get_template("index.html")
