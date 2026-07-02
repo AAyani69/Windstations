@@ -1,25 +1,48 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>Wind</title>
 
-        <style>
+<head>
+
+    <meta charset="utf-8">
+    <title>Windstations</title>
+
+    <style>
+
         body {
             font-family: Arial, sans-serif;
             margin: 10px;
         }
 
+        h2 {
+            text-align: center;
+        }
+
+        .stations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 20px;
+        }
+
+        .station {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            background: white;
+        }
+
+        h3 {
+            text-align: center;
+            margin-top: 0;
+        }
+
         table {
             border-collapse: collapse;
             width: 100%;
-            max-width: 500px;
-            margin: auto;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         th, td {
-            padding: 6px 4px;
+            padding: 4px;
             border: 1px solid #ddd;
             text-align: center;
         }
@@ -32,47 +55,69 @@
         .yellow { background: #fff59d; }
         .orange { background: #ffcc80; }
         .red { background: #ff8a80; }
-        .darkred { background: #b71c1c; color: white; }
+        .darkred {
+            background: #b71c1c;
+            color: white;
+        }
 
         .dir {
             color: black;
         }
+
     </style>
+
 </head>
 
 <body>
 
-<h3 style="text-align:center;">Viento Punta Galea</h3>
+<h2>WINDSTATIONS</h2>
 
-<table>
-    <tr>
-        <th>Hora</th>
-        <th>Media</th>
-        <th>Racha</th>
-        <th>Dir</th>
-    </tr>
+<div class="stations-grid">
 
-    {% for row in data %}
-    <tr>
+{% for station in stations %}
 
-        <td>{{ row.time }}</td>
+<div class="station">
 
-        <td class="{{ row.speed_color }}">
-            {{ "%.1f"|format(row.speed) }}
-        </td>
+    <h3>{{ station.name }}</h3>
 
-        <td class="{{ row.gust_color }}">
-            {{ "%.1f"|format(row.gust) }}
-        </td>
+    <table>
 
-        <td class="{{ row.dir_color }} dir">
-            {{ row.direction }}°
-        </td>
+        <tr>
+            <th>Hora</th>
+            <th>Media</th>
+            <th>Racha</th>
+            <th>Dir</th>
+        </tr>
 
-    </tr>
-    {% endfor %}
+        {% for row in station.data %}
 
-</table>
+        <tr>
+
+            <td>{{ row.time }}</td>
+
+            <td class="{{ row.speed_color }}">
+                {{ "%.1f"|format(row.speed) }}
+            </td>
+
+            <td class="{{ row.gust_color }}">
+                {{ "%.1f"|format(row.gust) }}
+            </td>
+
+            <td class="{{ row.dir_color }} dir">
+                {{ row.direction }}°
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+{% endfor %}
+
+</div>
 
 </body>
 </html>

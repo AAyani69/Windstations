@@ -1,6 +1,7 @@
+
 from datetime import date
 import requests
-
+from colors import wind_color, stronger_color
 
 # -------------------------
 # descarga JSON
@@ -17,7 +18,8 @@ def get_station_data(code):
         f"{today.day:02d}/"
         f"webmet00-readingsData.json"
     )
-
+    print(url)
+    
     r = requests.get(url)
     r.raise_for_status()
 
@@ -52,34 +54,6 @@ def ms_to_kmh(ms):
     return ms * 3.6
 
 
-# -------------------------
-# colores
-# -------------------------
-def wind_color(speed):
-
-    if speed < 20:
-        return "green"
-    elif speed < 30:
-        return "yellow"
-    elif speed < 40:
-        return "orange"
-    elif speed < 50:
-        return "red"
-    else:
-        return "darkred"
-
-
-COLOR_RANK = {
-    "green": 1,
-    "yellow": 2,
-    "orange": 3,
-    "red": 4,
-    "darkred": 5
-}
-
-
-def stronger_color(c1, c2):
-    return c1 if COLOR_RANK[c1] >= COLOR_RANK[c2] else c2
 
 
 # -------------------------
