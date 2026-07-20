@@ -20,7 +20,7 @@
         .stations-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 20px;
+            gap: 24px;
         }
 
         .station {
@@ -38,7 +38,7 @@
         table {
             border-collapse: collapse;
             width: 100%;
-            font-size: 18px;
+            font-size: 20px;
         }
 
         th, td {
@@ -94,13 +94,13 @@
         <tr>
 
             <td>{{ row.time }}</td>
-
-            <td class="{{ row.speed_color }}">
-                {{ "%.1f"|format(row.speed) }}
-            </td>
-
+            
             <td class="{{ row.gust_color }}">
                 {{ "%.1f"|format(row.gust) }}
+            </td>
+            
+            <td class="{{ row.speed_color }}">
+                {{ "%.1f"|format(row.speed) }}
             </td>
 
             <td class="{{ row.dir_color }} dir">
