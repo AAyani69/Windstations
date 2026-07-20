@@ -80,6 +80,9 @@ def get_wind_table(code, n=20):
         direction
     ):
 
+        sp = round(sp * 1.8, 1)
+        gs = round(gs * 1.8, 1)
+
         hour = t[11:16]
 
         speed_color = wind_color(sp)
