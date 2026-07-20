@@ -80,8 +80,8 @@ def get_wind_table(code, n=20):
         direction
     ):
 
-        sp = round(sp * 1.8, 1)
-        gs = round(gs * 1.8, 1)
+        sp = round(sp * 1.854, 1)
+        gs = round(gs * 1.854, 1)
 
         hour = t[11:16]
 
