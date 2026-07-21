@@ -1,6 +1,6 @@
 
 from jinja2 import Environment, FileSystemLoader
-
+from datetime import datetime
 from stations import STATIONS
 
 import euskalmet
@@ -52,9 +52,10 @@ env = Environment(
 )
 
 template = env.get_template("index.html")
-
+generation_time = datetime.now().strftime("%d/%m/%Y %H:%M")
 html = template.render(
-    stations=all_stations
+    stations=all_stations,
+    generation_time=generation_time
 )
 
 with open(
