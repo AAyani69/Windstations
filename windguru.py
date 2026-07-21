@@ -86,7 +86,11 @@ def get_wind_table(code, n=20):
         gs = round(gs * 1.854, 1)
         
         hour = t[11:16]
-
+        try:
+            tm = round(float(tm))
+        except (TypeError, ValueError):
+            tm = 0
+        
         speed_color = wind_color(sp)
         gust_color = wind_color(gs)
 
@@ -106,7 +110,7 @@ def get_wind_table(code, n=20):
 
             "direction": round(float(dr)) if dr not in (None, "null") else 0,
             
-            "temperature": round(float(tm)) if tm not in (None, "null") else 0,
+            "temperature": tm,
 
             "speed_color": speed_color,
 
