@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+refrom datetime import datetime, timedelta
 import requests
 
 from colors import wind_color, stronger_color
@@ -70,7 +70,7 @@ def get_wind_table(code, n=20):
     avg = data["wind_avg"][-n:]
     gust = data["wind_max"][-n:]
     direction = data["wind_direction"][-n:]
-    temp = data["temperature"][-n:]
+    temperature = data["temperature"][-n:]
 
     result = []
 
@@ -79,12 +79,12 @@ def get_wind_table(code, n=20):
         avg,
         gust,
         direction,
-        temp
+        temperature
     ):
 
         sp = round(sp * 1.854, 1)
         gs = round(gs * 1.854, 1)
-        tm = round(temp * 1, 1)
+        
         hour = t[11:16]
 
         speed_color = wind_color(sp)
@@ -106,7 +106,7 @@ def get_wind_table(code, n=20):
 
             "direction": round(dr),
             
-            "temperature":tm,
+            "temperature": round(tm),
 
             "speed_color": speed_color,
 
