@@ -70,19 +70,21 @@ def get_wind_table(code, n=20):
     avg = data["wind_avg"][-n:]
     gust = data["wind_max"][-n:]
     direction = data["wind_direction"][-n:]
+    temp = data["temperature"][-n:]
 
     result = []
 
-    for t, sp, gs, dr in zip(
+    for t, sp, gs, dr, tm in zip(
         times,
         avg,
         gust,
-        direction
+        direction,
+        temp
     ):
 
         sp = round(sp * 1.854, 1)
         gs = round(gs * 1.854, 1)
-
+        tm = round(temp * 1, 1)
         hour = t[11:16]
 
         speed_color = wind_color(sp)
@@ -91,6 +93,7 @@ def get_wind_table(code, n=20):
         dir_color = stronger_color(
             speed_color,
             gust_color
+        temp_color = wind_color(tm)
         )
 
         result.append({
@@ -102,13 +105,16 @@ def get_wind_table(code, n=20):
             "gust": gs,
 
             "direction": round(dr),
+            
+            "temperature":tm,
 
             "speed_color": speed_color,
 
             "gust_color": gust_color,
 
-            "dir_color": dir_color
-
+            "dir_color": dir_color,
+            
+            "temp_color": temp_color
         })
 
     return result
