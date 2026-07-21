@@ -62,3 +62,10 @@ jobs:
 
           echo "Timeout esperando Pages"
           exit 1
+      - name: Notificar al movil
+        run: |
+          curl \
+            -H "Title: Windstations actualizada" \
+            -H "Priority: high" \
+            -d "La nueva pagina ya esta publicada" \
+            https://ntfy.sh/windstations-aayani69
