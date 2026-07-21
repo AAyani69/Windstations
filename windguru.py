@@ -104,9 +104,9 @@ def get_wind_table(code, n=20):
 
             "gust": gs,
 
-            "direction": round(dr),
+            "direction": round(dr) if dr else None,
             
-            "temperature": round(tm),
+            "temperature": round(tm) if tm else None,
 
             "speed_color": speed_color,
 
