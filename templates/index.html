@@ -101,6 +101,7 @@
             <th>Racha</th>
             <th>Media</th>
             <th>Dir</th>
+            <th>temp</th>
         </tr>
 
         {% for row in station.data %}
@@ -120,7 +121,9 @@
             <td class="{{ row.dir_color }} dir">
                 {{ row.direction }}°
             </td>
-
+            <td class="{{ row.temp_color }} dir">
+                {{ row.temperature }}°
+            </td>
         </tr>
 
         {% endfor %}
