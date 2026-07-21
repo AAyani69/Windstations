@@ -92,9 +92,9 @@ def get_wind_table(code, n=20):
 
         dir_color = stronger_color(
             speed_color,
-            gust_color
+            gust_color)
+        
         temp_color = wind_color(tm)
-        )
 
         result.append({
 
