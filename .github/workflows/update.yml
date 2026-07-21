@@ -25,13 +25,6 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Test Euskalmet
-        run: |
-          curl -I -L https://www.euskalmet.euskadi.eus
-
-      - name: Test JSON Euskalmet
-        run: |
-          curl -v https://www.euskalmet.euskadi.eus/vamet/stations/readings/C042/2026/07/02/webmet00-readingsData.json
       - name: Generar HTML
         run: |
           python generate.py
