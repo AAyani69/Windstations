@@ -1,4 +1,4 @@
-refrom datetime import datetime, timedelta
+from datetime import datetime, timedelta
 import requests
 
 from colors import wind_color, stronger_color
