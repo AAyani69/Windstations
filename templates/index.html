@@ -4,6 +4,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Windstations</title>
 
     <!-- GENERATED: {{ generation_time }} -->
@@ -21,8 +22,8 @@
 
         .stations-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
         }
 
         .station {
@@ -45,11 +46,11 @@
         table {
             border-collapse: collapse;
             width: 100%;
-            font-size: 20px;
+            font-size: 13px;
         }
 
         th, td {
-            padding: 8px;
+            padding: 3px;
             border: 1px solid #ddd;
             text-align: center;
         }
