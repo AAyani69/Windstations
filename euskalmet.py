@@ -90,8 +90,8 @@ def get_wind_table(code, n=20):
         dr = direction.get(hour)
         tm = temperature.get(hour)
 
-        speed_val = ms_to_kmh(sp) if sp else None
-        gust_val = ms_to_kmh(gs) if gs else None
+        speed_val = ms_to_kmh(sp) if sp is not None else 0
+        gust_val = ms_to_kmh(gs) if gs is not None else 0
 
         speed_color = wind_color(speed_val)
         gust_color = wind_color(gust_val)
@@ -103,8 +103,8 @@ def get_wind_table(code, n=20):
             "time": hour,
             "speed": speed_val,
             "gust": gust_val,
-            "direction": round(dr) if dr else None,
-            "temperature": round(tm) if tm else None,
+            "direction": round(dr) if dr is not None else 0,
+            "temperature": round(tm) if tm is not None else 0,
             "speed_color": speed_color,
             "gust_color": gust_color,
             "dir_color": dir_color,
