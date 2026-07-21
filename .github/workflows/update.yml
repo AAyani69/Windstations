@@ -61,4 +61,4 @@ jobs:
             -H "Title: Windstations actualizada" \
             -H "Priority: high" \
             -d "La nueva pagina ya esta publicada" \
-            https://ntfy.sh/windstations-aayani69
+            https://ntfy.sh/Windstations-aayani69
