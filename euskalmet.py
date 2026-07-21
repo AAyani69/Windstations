@@ -80,7 +80,7 @@ def get_wind_table(code, n=20):
     speed = dict(get_last_n(data, "mean_speed", n))
     gust = dict(get_last_n(data, "max_speed", n))
     direction = dict(get_last_n(data, "mean_direction", n))
-
+    temperature = dict(get_last_n(data, "temperature", n))
     result = []
 
     for hour in speed.keys():
@@ -88,13 +88,15 @@ def get_wind_table(code, n=20):
         sp = speed.get(hour)
         gs = gust.get(hour)
         dr = direction.get(hour)
+        tm = temperature.get(hour)
 
         speed_val = ms_to_kmh(sp) if sp else None
         gust_val = ms_to_kmh(gs) if gs else None
 
         speed_color = wind_color(speed_val)
         gust_color = wind_color(gust_val)
-
+        temp_color = wind_color(gust_val)
+        
         dir_color = stronger_color(speed_color, gust_color)
 
         result.append({
@@ -102,9 +104,11 @@ def get_wind_table(code, n=20):
             "speed": speed_val,
             "gust": gust_val,
             "direction": round(dr) if dr else None,
+            "temperature": round(tm) if tm else None,
             "speed_color": speed_color,
             "gust_color": gust_color,
-            "dir_color": dir_color
+            "dir_color": dir_color,
+            "temp_color": temp_color
         })
 
     return result
