@@ -16,5 +16,5 @@ STATIONS = [
     Station("RCNL", "15438", "W"),
     Station("Punta Galea", "C042", "E"),
     Station("Escuela Vela", "5776", "W"),
-    Station("Astrabu", "15351", "W"),
+    Station("Galindo", "C038", "E"),
 ]
