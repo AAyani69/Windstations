@@ -28,7 +28,7 @@ jobs:
       - name: Test Euskalmet con diferentes opciones
         run: |
           URL="https://www.euskalmet.euskadi.eus/vamet/stations/readings/C042/2026/07/24/webmet00-readingsData.json"
-
+          
           echo "=============================="
           echo "Prueba 1: Curl normal"
           echo "=============================="
