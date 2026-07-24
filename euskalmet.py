@@ -64,27 +64,26 @@ def get_station_data(code):
 
     for intento in range(3):
 
-        try:
-            
-        prueba(url)
+        try:     
+            prueba(url)
         
-        r = session.get(
-            url,
-            stream=True,
-            timeout=(30, 120),
-            allow_redirects=True
-        )
+            r = session.get(
+                url,
+                stream=True,
+                timeout=(30, 120),
+                allow_redirects=True
+            )
 
-        print("Status:", r.status_code)
-        print("Headers recibidos")
+            print("Status:", r.status_code)
+            print("Headers recibidos")
 
-        print(r.headers)
+            print(r.headers)
 
-        texto = r.text[:200]
+            texto = r.text[:200]
 
-        print(texto)
+            print(texto)
 
-        return r.json()
+            return r.json()
         
         except Exception as e:
 
