@@ -1,3 +1,4 @@
+import time
 import requests
 from datetime import date
 from colors import wind_color, stronger_color
@@ -5,11 +6,12 @@ from colors import wind_color, stronger_color
 # -------------------------
 # descarga JSON
 # -------------------------
+
+
 def get_station_data(code):
 
     today = date.today()
 
-    
     url = (
         f"https://www.euskalmet.euskadi.eus/vamet/stations/readings/"
         f"{code}/"
@@ -25,17 +27,23 @@ def get_station_data(code):
         "User-Agent": "Mozilla/5.0"
     }
 
-    try:
-        r = requests.get(url, headers=headers, timeout=30)
-        r.raise_for_status()
-        return r.json()
-    except Exception as e:
-        print(f"Error descargando {url}")
-        print(repr(e))
-        return None
+    for intento in range(3):
 
+        try:
+            r = requests.get(url, headers=headers, timeout=30)
+            r.raise_for_status()
+            return r.json()
 
+        except requests.exceptions.RequestException as e:
 
+            print(f"Intento {intento+1}/3 fallido")
+            print(repr(e))
+
+            if intento < 2:
+                time.sleep(5)
+
+    print(f"Error descargando {url}")
+    return None
 
   
 
