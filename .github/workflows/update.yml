@@ -25,11 +25,33 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Test Euskalmet with curl
+      - name: Test Euskalmet con diferentes opciones
         run: |
-          echo "Probando conexión con curl..."
-          curl -I -v https://www.euskalmet.euskadi.eus/vamet/stations/readings/C042/2026/07/24/webmet00-readingsData.json
+          URL="https://www.euskalmet.euskadi.eus/vamet/stations/readings/C042/2026/07/24/webmet00-readingsData.json"
 
+          echo "=============================="
+          echo "Prueba 1: Curl normal"
+          echo "=============================="
+          curl -v --connect-timeout 30 --max-time 120 "$URL" || true
+
+          echo ""
+          echo "=============================="
+          echo "Prueba 2: HTTP/1.1"
+          echo "=============================="
+          curl --http1.1 -v --connect-timeout 30 --max-time 120 "$URL" || true
+      
+          echo ""
+          echo "=============================="
+          echo "Prueba 3: TLS 1.2 + HTTP/1.1"
+          echo "=============================="
+          curl --tlsv1.2 --http1.1 -v --connect-timeout 30 --max-time 120 "$URL" || true
+      
+          echo ""
+          echo "=============================="
+          echo "Prueba 4: IPv4 forzada"
+          echo "=============================="
+          curl -4 -v --connect-timeout 30 --max-time 120 "$URL" || true
+          
       - name: Generar HTML
         run: |
           python generate.py
