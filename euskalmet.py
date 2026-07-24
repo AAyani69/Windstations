@@ -3,11 +3,24 @@ from datetime import date
 
 import time
 import requests
-
+import urllib.request
 
 # -------------------------
 # descarga JSON
 # -------------------------
+
+def prueba(url):
+
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": "Mozilla/5.0"
+        }
+    )
+
+    with urllib.request.urlopen(req, timeout=120) as f:
+        print(f.status)
+        print(f.read(200))
 
 def get_station_data(code):
 
@@ -52,19 +65,27 @@ def get_station_data(code):
     for intento in range(3):
 
         try:
+            
+        prueba(url)
+        
+        r = session.get(
+            url,
+            stream=True,
+            timeout=(30, 120),
+            allow_redirects=True
+        )
 
-            r = session.get(
-                url,
-                timeout=(10, 60),
-                allow_redirects=True
-            )
+        print("Status:", r.status_code)
+        print("Headers recibidos")
 
-            print("Status:", r.status_code)
+        print(r.headers)
 
-            r.raise_for_status()
+        texto = r.text[:200]
 
-            return r.json()
+        print(texto)
 
+        return r.json()
+        
         except Exception as e:
 
             print(f"Intento {intento+1}/3 fallido")
