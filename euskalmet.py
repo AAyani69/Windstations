@@ -26,6 +26,19 @@ def get_station_data(code):
 
     today = date.today()
 
+
+    url = "https://www.euskalmet.euskadi.eus/s07-5853x/es/meteorologia/datos/graficasMeteogene.apl?e=5&nombre=Galindo&fechasel=28/07/2026&tipo=blue&pestanita=limeteo&R01HNoPortal=true"
+
+    r = requests.get(
+        url,
+        headers={"User-Agent": "Mozilla/5.0"},
+        timeout=60
+    )
+    
+    print(url)
+    print(r.status_code)
+    print(r.text[:500])
+    
     url = (
         f"https://www.euskalmet.euskadi.eus/vamet/stations/readings/"
         f"{code}/"
