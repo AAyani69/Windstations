@@ -167,7 +167,7 @@ def get_wind_table(code, n=20):
 
         speed_color = wind_color(speed_val)
         gust_color = wind_color(gust_val)
-        temp_color = wind_color(gust_val)
+        temp_color = wind_color(temp_val)
         
         dir_color = stronger_color(speed_color, gust_color)
 
